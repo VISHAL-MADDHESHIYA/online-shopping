@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maddheshiya Battery Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #5720b0;
+      z-index: 1000;
+    }
+
+    /* Header */
+    .header {
+      height: 80px;
+      width: 1540px;
+      background-color: black;
+      /* position: sticky; same as fixed but only when scrolling down */
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      z-index: 1000;
+    }
+    .header ul {
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      width: 1540px;
+      margin: 0;
+      padding: 0;
+      z-index: 1000;
+    }
+    .header ul li {
+      padding: 0 15px;
+      list-style: none;
+      z-index: 1000;
+    }
+    .button {
+      background-color: yellow;
+      padding: 10px 20px;
+      border: 2px solid red;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+    .button:hover {
+      background-color: red;
+      color: white;
+      transform: scale(1.1);
+      z-index: 1000;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(to right, #ffdd00, #ff9900);
+      color: black;
+      width: 1500px;
+      z-index: 1000;
+      
+    }
+    .hero h1 {
+      font-size: 40px;
+      margin: 10px 0;
+      z-index: 1000;
+    }
+    .hero p {
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      z-index: 1000;
+    }
+    .product {
+      background: white;
+      border:1px solid gray;
+      border-right: 15px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+    .product:hover {
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+    }
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+    .product h3 {
+      margin: 10px 0;
+      z-index: 1000;
+    }
+    .buy-btn {
+      background: green;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+    .buy-btn:hover {
+      background: darkgreen;
+      z-index: 1000;
+    }
+    .vishal{
+      height: 350px;
+      width: 350px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+    
+
+    .footer {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      z-index: 1000;
+    }
+    .footer a {
+      color: yellow;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .cart-section {
+  margin: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.cart-section h2 {
+  margin-bottom: 15px;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+#cart-items li {
+  margin: 10px 0;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #333;
+      color: white;
+    }
+    #searchBar {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .total-box {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+
+<body>
+  
+  
+
+  <div class="header">
+    <ul>
+      <li><a href="home.html"><button class="button">Home</button></a></li>
+      <li><a href="about.html"><button class="button">About</button></a></li>
+      <li><a href="contact.html"><button class="button">Contact Us</button></a></li>
+      <li><a href="help.html"><button class="button">Help</button></a></li>
+      <li><a href="privacy.html"><button class="button">Privacy Policy</button></a></li>
+      <li><a href="login.html"><button class="button">Login</button></a></li>
+      <script>
+    function logout() {
+      localStorage.removeItem('project');
+      window.location.href = 'login.html';
+    }
+  </script>
+      <li><a href="#" onclick="logout()"><button class="button">Logout</button></a></li>
+            <body class="light-mode">
+
+  <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+    </ul>
+    
+    
+</div>
+
+  <div class="hero">
+   <marquee behavior="scroll" direction="left"><h1>Welcome to Maddheshiya Battery and Electronics Shop </h1></marquee> 
+    <p>Your one-stop solution for Car, Bike & Inverter Batteries</p>
+  </div>
+  <div class="Image"><img src="./ChatGPT Image Aug 31, 2025, 01_12_22 AM.png"></div>
+
+
+  <!-- products section -->
+  <section class="products-section">
+      <h2>Our Products</h2>
+  <input type="text" id="searchBar" placeholder="Search products...">
+
+  <div class="products">
+    <div class="product-card" data-name="Car Battery" data-price="4500">
+      <img src="./WhatsApp Image 2025-09-07 at 13.23.06_633a87f8.jpg" alt="Car Battery" class="vishal">
+      <h3>Car Battery</h3>
+      <p class="price">₹4500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="Bike Battery" data-price="2200">
+      <img src="./WhatsApp Image 2025-09-07 at 13.23.07_97b2b88b.jpg" alt="Bike Battery" class="vishal">
+      <h3>Bike Battery</h3>
+      <p class="price">₹2200</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="Inverter Battery" data-price="7500">
+      <img src="./WhatsApp Image 2025-09-07 at 13.23.06_bca55f24.jpg" alt="Inverter Battery" class="vishal">
+      <h3>Inverter Battery</h3>
+      <p class="price">₹7500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="Battery Charger" data-price="1200">
+      <img src="./WhatsApp Image 2025-09-07 at 13.23.05_708275a3.jpg" alt="Battery Charger" class="vishal">
+      <h3>Battery Charger</h3>
+      <p class="price">₹1200</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+    
+  </div>
+
+</section>
+<section class="products-section">
+     
+  <div class="products">
+    <div class="product-card" data-name="Stand Fan" data-price="500">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.18_a3f5f3b1ministandfan.jpg" alt="Stand Fan" class="vishal">
+      <h3>Stand Fan</h3>
+      <p class="price">₹500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="Ceiling Fan" data-price="1000">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.17_d14e5a98cellingfan2.jpg" alt="Ceiling Fan" class="vishal">
+      <h3>Ceiling Fan</h3>
+      <p class="price">₹1000</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="Mini Cooler" data-price="800">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.17_5cf2683bminicooler.jpg" alt="Mini Cooler" class="vishal">
+      <h3>Mini Cooler</h3>
+      <p class="price">₹800</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="dj sound" data-price="3500">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.16_ca12b07csound.jpg" alt="dj sound" class="vishal">
+      <h3>dj sound</h3>
+      <p class="price">₹3500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+  </div>
+  </section>
+  <section class="products-section">
+     
+  <div class="products">
+    <div class="product-card" data-name="led tv" data-price="9000">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.15_86df626atv.jpg" alt="led tv" class="vishal">
+      <h3>led tv</h3>
+      <p class="price">₹9000</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="washing machine" data-price="15000">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.16_17d3e7fewasingmachin.jpg" alt="washing machine" class="vishal">
+      <h3>washing machine</h3>
+      <p class="price">₹15000</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="glass bulb" data-price="50">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.14_3a307ea1glassbulb.jpg" alt="glass bulb" class="vishal">
+      <h3>glass bulb</h3>
+      <p class="price">₹50</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="freezer" data-price="13500">
+      <img src="./WhatsApp Image 2025-09-07 at 14.21.15_89972d64freez.jpg" alt="freezer" class="vishal">
+      <h3>freezer</h3>
+      <p class="price">₹13500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+  </div>
+  </section>
+  </section>
+  <section class="products-section">
+     
+  <div class="products">
+    <div class="product-card" data-name="plug board" data-price="320">
+      <img src="./WhatsApp Image plug board2025-09-07 at 15.31.50_4db95a87.jpg" alt="plug board" class="vishal">
+      <h3>plug board</h3>
+      <p class="price">₹320</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="shocket" data-price="150">
+      <img src="./WhatsApp Image shocket 2025-09-07 at 15.31.50_84740789.jpg" alt="shocket" class="vishal">
+      <h3>shocket</h3>
+      <p class="price">₹150</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="swing machine" data-price="8500">
+      <img src="./WhatsApp Image swing machin2025-09-07 at 15.31.51_96d8c662.jpg" alt="swing machine" class="vishal">
+      <h3>swing machine</h3>
+      <p class="price">₹8500</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="solar" data-price="2300">
+      <img src="./WhatsApp Images solar 2025-09-07 at 15.31.49_aee83670.jpg" alt="solar" class="vishal">
+      <h3>solar</h3>
+      <p class="price">₹2300</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+  </div>
+  </section>
+<section class="products-section">
+     
+  <div class="products">
+    <div class="product-card" data-name="wire" data-price="32/meter">
+      <img src="./WhatsApp Image  wire2025-09-07 at 14.21.14_10d67203 wire.jpg" alt="wire" class="vishal">
+      <h3>wire</h3>
+      <p class="price">₹32/meter</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="pipe" data-price="190">
+      <img src="./WhatsApp Image pipe2025-09-07 at 14.21.13_2818fb9a pipe.jpg" alt="pipe" class="vishal">
+      <h3>pipe</h3>
+      <p class="price">₹190</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="tubelight" data-price="420">
+      <img src="./WhatsApp Image tubelight 2025-09-07 at 14.21.14_75d5b340ledbuld1.jpg" alt="tubelight" class="vishal">
+      <h3>tubelight</h3>
+      <p class="price">₹420</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="waterpump" data-price="3400">
+      <img src="./WhatsApp Image waterpump 2025-09-07 at 15.31.50_87d86b42.jpg" alt="waterpump" class="vishal">
+      <h3>waterpump</h3>
+      <p class="price">₹3400</p>
+      <button class="btn add-to-cart">Buy Now</button>
+    </div>
+
+  </div>
+  </section>
+  
+
+
+<!-- Cart Section -->
+<section class="cart-section">
+  <h2>Your Cart</h2>
+  <ul id="cart-items"></ul>
+  <p id="cart-total">Total: ₹0</p>
+
+  <input type="text" id="coupon-code" placeholder="Enter Coupon Code" style="padding:5px; margin-top:10px;">
+  <button id="apply-coupon" style="padding:5px 10px; background:green; color:white; border:none; border-radius:5px; cursor:pointer;">
+    Apply
+  </button>
+
+  <button id="checkout-btn"
+    style="padding:10px 20px; background:blue; color:white; border:none; border-radius:8px; cursor:pointer; margin-top:10px;">
+    Checkout
+  </button>
+</section><!-- Cart Section 
+<section class="order-summary">
+  <h1>Order Summary</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="order-items">
+       Order items will be populated here 
+    </tbody>
+  </table>
+  <div class="total-box" id="final-total">Final Total: ₹0</div>
+  <button class="btn" id="confirm-order">Confirm Order</button>
+</section>
+-->
+
+  <!-- Footer -->
+
+<div class="footer">
+   
+    <p>
+      <i class="fa fa-phone" style="font-size:20px;color:rgb(255, 255, 255)"> contact:8009680483</i><br>
+      <i class="fa fa-envelope" style="font-size:20px;color:rgb(255, 255, 255)"> mail:maddheshiyav982@gmail.com</i><br>
+      <i class="fa fa-map-marker" style="font-size:20px;color:rgb(255, 255, 255)"> Location: kaptanganj road , kushinagar(274306)</i> <br>
+      <a href="#">Facebook</a> 
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="https://www.google.com" target="_blank"><button class="button">click here to visit google</button></a><br>
+       <p>&copy; 2025 Maddheshiya Battery Shop | All Rights Reserved</p>
+
+    </p>
+  </div>
+
+</body><script>
+  // Global cart & coupon
+  let cart = [];
+  let appliedCoupon = "";
+
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+
+  // Add to Cart (for "Buy Now" buttons inside product list)
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const product = button.closest(".product-card");
+      const name = product.getAttribute("data-name");
+      const price = parseInt(product.getAttribute("data-price"));
+
+      // Check if already in cart
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+
+      renderCart();
+    });
+  });
+
+  // Render Cart
+  function renderCart() {
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        ${item.name} - ₹${item.price} × ${item.quantity} = ₹${item.price * item.quantity}
+        <button class="dec-btn">➖</button>
+        <button class="inc-btn">➕</button>
+        <button class="remove-btn">❌</button>
+      `;
+
+      // Decrease Quantity
+      li.querySelector(".dec-btn").onclick = () => {
+        if (item.quantity > 1) {
+          item.quantity--;
+        } else {
+          cart.splice(index, 1);
+        }
+        renderCart();
+      };
+
+      // Increase Quantity
+      li.querySelector(".inc-btn").onclick = () => {
+        item.quantity++;
+        renderCart();
+      };
+
+      // Remove Item
+      li.querySelector(".remove-btn").onclick = () => {
+        cart.splice(index, 1);
+        renderCart();
+      };
+
+      cartItems.appendChild(li);
+      total += item.price * item.quantity;
+    });
+
+    // Apply Coupon Discount
+    let discount = 0;
+    if (appliedCoupon === "SAVE10") {
+      discount = total * 0.1;
+    }
+
+    cartTotal.textContent = `Total: ₹${total - discount}`;
+    if (discount > 0) {
+      cartTotal.textContent += ` (Discount: -₹${discount})`;
+    }
+  }
+
+  // Apply Coupon
+  document.getElementById("apply-coupon").addEventListener("click", () => {
+    const code = document.getElementById("coupon-code").value.trim();
+    if (code === "SAVE10") {
+      appliedCoupon = code;
+      alert("✅ Coupon applied! You got 10% off.");
+    } else {
+      appliedCoupon = "";
+      alert("❌ Invalid coupon code!");
+    }
+    renderCart();
+  });
+
+  // Checkout
+  document.getElementById("checkout-btn").addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+    } else {
+      // Save cart data in localStorage
+      localStorage.setItem("orderCart", JSON.stringify(cart));
+      localStorage.setItem("coupon", appliedCoupon);
+
+      // Redirect to order summary page
+      window.location.href = "order-summary.html";
+    }
+  });
+
+  // Buy Now (direct single product purchase)
+  document.querySelectorAll(".buy-now").forEach(button => {
+    button.addEventListener("click", () => {
+      const product = button.closest(".product-card");
+      const name = product.getAttribute("data-name");
+      const price = parseInt(product.getAttribute("data-price"));
+
+      // Single product cart
+      const tempCart = [{ name, price, quantity: 1 }];
+
+      // Save in localStorage
+      localStorage.setItem("orderCart", JSON.stringify(tempCart));
+      localStorage.setItem("coupon", "");
+
+      // Redirect to summary
+      window.location.href = "order-summary.html";
+    });
+  });
+  // Initial render
+    // Fetch cart data from localStorage
+    const orderCart = JSON.parse(localStorage.getItem('orderCart')) || [];
+    const coupon = localStorage.getItem('coupon') || '';
+
+    const orderItemsTbody = document.getElementById('order-items');
+    const finalTotalDiv = document.getElementById('final-total');
+
+    let finalTotal = 0;
+
+    // Populate order items
+    orderCart.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      finalTotal += itemTotal;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>₹${itemTotal}</td>
+      `;
+      orderItemsTbody.appendChild(tr);
+    });
+
+    // Apply coupon discount if applicable
+    let discount = 0;
+    if (coupon === 'SAVE10') {
+      discount = finalTotal * 0.1;
+      finalTotal -= discount;
+    }
+
+    if (discount > 0) {
+      const discountRow = document.createElement('tr');
+      discountRow.innerHTML = `
+        <td colspan="3">Coupon Discount (10%)</td>
+        <td>-₹${discount.toFixed(2)}</td>
+      `;
+      orderItemsTbody.appendChild(discountRow);
+    }
+
+    finalTotalDiv.textContent = `Final Total: ₹${finalTotal.toFixed(2)}`;
+
+    // Confirm Order button
+    document.getElementById('confirm-order').addEventListener('click', () => {
+  alert('Thank you for your purchase! Your order has been confirmed.');
+
+  // Cart data clear karo
+  localStorage.removeItem('orderCart');
+  localStorage.removeItem('coupon');
+
+  // Direct product page pe redirect
+  window.location.href = "project.html";
+});
+
+  function checkout() {
+    // cart aur coupon ko localStorage me save karo
+    localStorage.setItem("orderCart", JSON.stringify(cart));
+    localStorage.setItem("coupon", appliedCoupon);
+
+    // redirect to order summary page
+    window.location.href = "order-summary.html"; 
+  }
+  const searchBar = document.getElementById('searchBar');
+    const products = document.querySelectorAll('.product');
+
+    searchBar.addEventListener('keyup', function() {
+      let value = searchBar.value.toLowerCase();
+
+      products.forEach(product => {
+        let text = product.textContent.toLowerCase();
+        if (text.includes(value)) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    });
+
+</script>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Toggle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+      padding: 20px;
+    }
+
+    /* Default Light Mode */
+    body.light-mode {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #121212;
+      color: #ffffff;
+    }
+
+    .toggle-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .light-mode .toggle-btn {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .dark-mode .toggle-btn {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .box {
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+  <script>
+    function toggleMode() {
+      const body = document.body;
+      const btn = document.querySelector('.toggle-btn');
+
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+
+      if (body.classList.contains('dark-mode')) {
+        btn.textContent = "☀️ Light Mode";
+      } else {
+        btn.textContent = "🌙 Dark Mode";
+      }
+    }
+  </script>
+
+</body>
+</html>
+

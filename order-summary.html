@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Summary</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+    th { background: #f4f4f4; }
+    #final-total { font-size: 18px; font-weight: bold; margin-top: 20px; }
+    button { padding: 10px 15px; border: none; background: green; color: white; cursor: pointer; border-radius: 5px; }
+    button:hover { background: darkgreen; }
+  </style>
+</head>
+<body>
+
+  <h1>Order Summary</h1>
+  <table id="order-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p id="final-total"></p>
+  <button onclick="confirmOrder()">Confirm Order</button>
+
+  <script>
+    // Load cart data from localStorage
+    const cart = JSON.parse(localStorage.getItem("orderCart")) || [];
+    const coupon = localStorage.getItem("coupon") || "";
+    const tbody = document.querySelector("#order-table tbody");
+
+    let total = 0;
+    cart.forEach(item => {
+      const row = document.createElement("tr");
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>₹${itemTotal}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // Apply discount if coupon
+    let discount = 0;
+    if (coupon === "SAVE10") {
+      discount = total * 0.1;
+    }
+    const finalAmount = total - discount;
+
+    document.getElementById("final-total").innerHTML =
+      `Subtotal: ₹${total}<br>` +
+      (discount > 0 ? `Discount (SAVE10): -₹${discount}<br>` : "") +
+      `<strong>Final Total: ₹${finalAmount}</strong>`;
+
+    function confirmOrder() {
+  const cart = JSON.parse(localStorage.getItem("orderCart")) || [];
+  const coupon = localStorage.getItem("coupon") || "";
+  let total = 0;
+
+  cart.forEach(item => total += item.price * item.quantity);
+
+  let discount = 0;
+  if (coupon === "SAVE10") discount = total * 0.1;
+
+  const finalAmount = total - discount;
+
+  // Send data to Python backend
+  fetch("http://127.0.0.1:5000/save-order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cart, coupon, finalAmount })
+  })
+  .then(res => res.json())
+  .then(data => {
+      alert("🎉 Order Confirmed! Your order is saved to the database.");
+
+      // Clear cart
+      localStorage.removeItem("orderCart");
+      localStorage.removeItem("coupon");
+
+      // Redirect
+      window.location.href = "home.html";
+  })
+  .catch(err => console.error("Error:", err));
+}
+    </script>
+    <script>
+      // Redirect to home page if no items in cart
+      if (cart.length === 0) {
+        alert("Your cart is empty. Redirecting to home page.");
+        window.location.href = "home.html";
+      }
+
+  </script>
+
+</body>
+</html>

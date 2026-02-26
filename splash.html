@@ -1,0 +1,88 @@
+f<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome | Battery Brand</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: 'Segoe UI', sans-serif; background: #000; color: #fff; }
+
+    .splash-container {
+      display: flex; align-items: center; justify-content: center;
+      height: 100%; text-align: center; position: relative;
+    }
+
+    /* Battery Logo */
+    .battery {
+      width: 120px;
+      height: 60px;
+      border: 5px solid #fff;
+      border-radius: 8px;
+      position: relative;
+      margin: 0 auto 20px;
+      overflow: hidden;
+    }
+    .battery::after {
+      content: "";
+      position: absolute;
+      top: 15px; right: -15px;
+      width: 12px; height: 30px;
+      background: #fff; border-radius: 3px;
+    }
+    .charge {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #00ff00, #66ff66);
+      animation: charging 4s forwards;
+    }
+    @keyframes charging {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    h1 { font-size: 2.5em; margin-bottom: 0.5em; letter-spacing: 2px; }
+    p { font-size: 1.2em; margin-bottom: 1.5em; }
+
+    .btn {
+      padding: 0.8em 2em;
+      background-color: #ff6600;
+      color: #fff; text-decoration: none;
+      font-size: 1em; border-radius: 8px;
+      transition: 0.3s ease;
+    }
+    .btn:hover { background-color: #e65c00; transform: scale(1.05); }
+
+    /* Split effect when done */
+    .split {
+      animation: split 1s forwards;
+    }
+    @keyframes split {
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: scale(1.5) rotate(30deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="splash-container">
+    <div>
+      <div class="battery" id="battery">
+        <div class="charge"></div>
+      </div>
+      <h1>Battery Brand</h1>
+      <p>Powering Your Future</p>
+      <a href="project.html"></a>
+    </div>
+  </div>
+
+<script>
+  // After animation ends, trigger split + redirect
+  setTimeout(() => {
+    document.getElementById("battery").classList.add("split");
+    setTimeout(() => {
+      window.location.href = 'project.html';
+    }, 1000); // wait for split animation
+  }, 4000); // battery charging duration
+</script>
+</body>
+</html>
